@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitor Gabriel • Dossiê Anatômico & Autópsia Criativa</title>
+  
+  <!-- Fontes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700;800&family=Outfit:wght@400;600;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="hospital-theme">
+  <!-- Padrão de azulejos estéreis em marfim e luz hospitalar de fundo -->
+  <div class="sterile-tile-bg"></div>
+  <div class="ambient-glow"></div>
+
+  <!-- Barra Superior de Monitoramento Clínico -->
+  <header class="clinical-header">
+    <div class="header-container">
+      <div class="patient-tag">
+        <div class="pulse-dot"></div>
+        <div class="tag-info">
+          <span class="tag-label">ESPÉCIME & CRIADOR</span>
+          <span class="patient-name">Vitor Gabriel <span class="badge-mini">PROTÓTIPO V.12</span></span>
+        </div>
+      </div>
+
+      <!-- Monitor de Eletrocardiograma (ECG) animado -->
+      <div class="ecg-monitor" id="ecgMonitor" title="Frequência Criativa em Tempo Real">
+        <div class="ecg-screen">
+          <svg class="ecg-line" viewBox="0 0 240 40" preserveAspectRatio="none">
+            <path d="M0,20 L35,20 L42,4 L50,36 L58,12 L66,28 L74,20 L125,20 L133,3 L141,37 L149,11 L157,27 L165,20 L240,20" />
+          </svg>
+          <span class="bpm-label"><strong id="bpmValue">120</strong> BPM (WHIMSICAL)</span>
+        </div>
+      </div>
+
+      <!-- Controles de Som, Visualização e Interação -->
+      <div class="header-actions">
+        <a href="sensor.html" class="action-pill sensor-header-btn" title="Ir para o Sensor de Poluição Sonora em Tempo Real">
+          <span class="icon">📊</span>
+          <span class="btn-text">VISUALIZAÇÃO DINÂMICA DE DADOS</span>
+        </a>
+        <button id="soundToggleBtn" class="action-pill sound-btn" aria-label="Ligar/Desligar Efeitos Sonoros">
+          <span class="icon" id="soundIcon">🔊</span>
+          <span class="btn-text">ÁUDIO: <strong id="soundStatus">ON</strong></span>
+        </button>
+        <button id="dopamineQuickBtn" class="action-pill dopamine-btn" title="Injeção de Dopamina Instantânea">
+          <span class="icon">✨</span>
+          <span class="btn-text">DOPAMINA</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <!-- SEÇÃO 1: HERO / DOSSIÊ CLÍNICO -->
+    <section class="hero-section">
+      <div class="hero-badge-row">
+        <span class="status-sticker ivory-stick">⚡ HIPERFOCO ATIVO (12 ANOS)</span>
+        <span class="status-sticker red-stick">🍰 REATOR: MARACUJÁ</span>
+        <span class="status-sticker white-stick">🩸 CIRURGIA & CARTOON GORE</span>
+        <span class="status-sticker ivory-stick">📍 MARANHÃO / PIAUÍ</span>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-text-content">
+          <h1 class="hero-title">
+            Mesa de Operação de <br>
+            <span class="highlight-red">Vitor Gabriel</span>
+          </h1>
+          <p class="hero-description">
+            Arte anatômica e dissecção sob iluminação hospitalar estéril. 
+            Guiado por melodias <em>whimsical</em>, costelas abertas, pulmões pastéis e uma persona viva e hiperfocada há mais de uma década.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="sensor.html" class="btn-bubble btn-sensor" data-sound="sparkle">
+              <span>📊 Visualização Dinâmica de Dados</span>
+            </a>
+            <a href="#anatomia-persona" class="btn-bubble btn-red" data-sound="pop">
+              <span>🔬 Mesa de Dissecção</span>
+            </a>
+            <a href="#prancheta-interativa" class="btn-bubble btn-ivory" data-sound="squish">
+              <span>📋 Prancheta de Rabiscos</span>
+            </a>
+            <a href="#cardapio-nutricional" class="btn-bubble btn-white" data-sound="bloop">
+              <span>🍰 Menu de Dopamina</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Crachá Oficial do Cirurgião-Chefe (Lead Doctor) com Foto Quadrada -->
+        <div class="lead-doctor-badge-card">
+          <div class="lanyard-clip"></div>
+          <div class="doctor-card-inner">
+            <div class="doctor-card-header">
+              <span class="hospital-seal">🏥 HOSPITAL CIRÚRGICO</span>
+              <span class="status-pill ok-pill">LEAD DOCTOR</span>
+            </div>
+            
+            <div class="doctor-photo-container">
+              <div class="doctor-photo-frame" id="doctorPhotoFrame" role="button" tabindex="0" title="Dr. Vitor Gabriel - Cirurgião-Chefe">
+                <img src="lead_doctor.jpg" alt="Dr. Vitor Gabriel - Cirurgião-Chefe Pensativo" class="doctor-photo-square active" id="leadDoctorPhoto">
+                <img src="lead_doctor_thumbsup.jpg" alt="Dr. Vitor Gabriel - Cirurgião-Chefe Aprovado" class="doctor-photo-square thumbsup" id="leadDoctorPhotoThumbs">
+                <img src="lead_doctor_stare.jpg" alt="Dr. Vitor Gabriel - Olhar Intenso Cirúrgico" class="doctor-photo-square stare" id="leadDoctorPhotoStare">
+                <div class="photo-corner-accent top-l"></div>
+                <div class="photo-corner-accent top-r"></div>
+                <div class="photo-corner-accent btm-l"></div>
+                <div class="photo-corner-accent btm-r"></div>
+              </div>
+              <span class="doctor-role-tag" id="doctorReactionTag">CIRURGIÃO-CHEFE</span>
+            </div>
+
+            <div class="doctor-info-block">
+              <h3 class="doctor-name">Dr. Vitor Gabriel</h3>
+              <span class="doctor-subtitle">Pesquisador Anatômico & Criador</span>
+
+              <div class="doctor-data-grid">
+                <div class="data-item">
+                  <span class="data-lbl">Autorização:</span>
+                  <span class="data-val red-text">NÍVEL 5 (TOTAL)</span>
+                </div>
+                <div class="data-item">
+                  <span class="data-lbl">Registro / CRM:</span>
+                  <span class="data-val">#0208-WHIMSICAL</span>
+                </div>
+                <div class="data-item">
+                  <span class="data-lbl">Origem:</span>
+                  <span class="data-val">Pres. Dutra ➔ Teresina</span>
+                </div>
+                <div class="data-item">
+                  <span class="data-lbl">Hiperfoco:</span>
+                  <span class="data-val">Persona dos 12 Anos</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="doctor-card-footer">
+              <div class="barcode-graphic"></div>
+              <span class="seal-text">AUTORIZADO PARA OPERAÇÃO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: MESA OPERATÓRIA / A IMAGEM OFICIAL DO CORPO EM EXIBIÇÃO -->
+    <section class="section-container" id="anatomia-persona">
+      <div class="section-header">
+        <span class="section-tag red-tag">MESA DE DISSECÇÃO OFICIAL</span>
+        <h2 class="section-title">Anatomia do Espécime em Exibição</h2>
+        <p class="section-subtitle">
+          A imagem autêntica da autópsia na mesa cirúrgica. Clique nos órgãos, coração, cabeça e membros para interagir.
+        </p>
+      </div>
+
+      <div class="xray-dashboard">
+        <!-- Mesa Cirúrgica / Bloco de Exibição com a Imagem Oficial -->
+        <div class="lightbox-view">
+          <div class="lightbox-frame">
+            <div class="lightbox-screws top-left"></div>
+            <div class="lightbox-screws top-right"></div>
+            <div class="lightbox-screws bottom-left"></div>
+            <div class="lightbox-screws bottom-right"></div>
+
+            <div class="xray-canvas-area" id="xrayCanvasArea">
+              <!-- Grid de Linhas Estéreis -->
+              <div class="xray-grid-lines"></div>
+
+              <!-- CONTAINER DA IMAGEM OFICIAL COM HOTSPOTS INTERATIVOS -->
+              <div class="official-body-wrap">
+                <img src="body_autopsy.jpg" alt="Corpo na Mesa de Autópsia Cirúrgica de Vitor Gabriel" class="official-body-img" id="officialBodyImg">
+                
+                <!-- Barra Preta de Censura sobre os Olhos/Rosto (Identidade Confidencial / Sem Olhos) -->
+                <div class="black-censor-bar" id="faceCensorBar" title="IDENTIDADE CONFIDENCIAL / SEM OLHOS">
+                  <span>CENSORED</span>
+                </div>
+
+                <!-- Hotspots Invisíveis Mapeados Diretamente Sobre a Imagem -->
+                <div class="hotspot hotspot-heart" data-organ="heart" title="Coração na Bandeja Superior"></div>
+                <div class="hotspot hotspot-brain" data-organ="brain" title="Cabeça & Córtex"></div>
+                <div class="hotspot hotspot-lungs" data-organ="lungs" title="Pulmões em Dissecção"></div>
+                <div class="hotspot hotspot-stomach" data-organ="stomach" title="Estômago & Reator de Alimentos"></div>
+                <div class="hotspot hotspot-hands-l" data-organ="hands" title="Mão Esquerda Contida"></div>
+                <div class="hotspot hotspot-hands-r" data-organ="hands" title="Mão Direita Aberta"></div>
+                <div class="hotspot hotspot-tools" data-organ="tools" title="Bandeja de Instrumentos"></div>
+              </div>
+
+              <!-- Marcadores Flutuantes Interativos Posicionados sobre a Imagem Oficial -->
+              <button class="organ-pin pin-heart-official" data-organ="heart" title="Ver Coração na Bandeja">🫀</button>
+              <button class="organ-pin pin-brain-official" data-organ="brain" title="Ver Cérebro & Persona">🧠</button>
+              <button class="organ-pin pin-lungs-official" data-organ="lungs" title="Ver Pulmões Pastel">🫁</button>
+              <button class="organ-pin pin-stomach-official" data-organ="stomach" title="Ver Estômago & Reator">🍖</button>
+              <button class="organ-pin pin-cuffs-official" data-organ="hands" title="Ver Mãos Contidas">✍️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Painel Lateral de Diagnóstico & Lore da Persona -->
+        <div class="diagnosis-panel">
+          <div class="panel-terminal">
+            <div class="terminal-bar">
+              <span class="dot-win red"></span>
+              <span class="dot-win yellow"></span>
+              <span class="dot-win cyan"></span>
+              <span class="terminal-title">AUTÓPSIA_OFICIAL.LOG</span>
+            </div>
+            
+            <div class="terminal-content" id="diagnosisOutput">
+              <!-- Conteúdo Dinâmico Preenchido pelo JS ao Clicar -->
+              <div class="diag-header">
+                <span class="diag-badge">ÓRGÃO EM DISSECÇÃO</span>
+                <h3 class="diag-title" id="diagTitle">🫁 Pulmões Anatômicos</h3>
+              </div>
+
+              <div class="diag-body">
+                <p class="diag-text" id="diagText">
+                  <strong>Fôlego Artístico:</strong> Pulmões em vermelho pastel com marcas de incisão. Armazenam o fôlego criativo necessário para maratonar ilustrações corporais e dar vida a novas narrativas.
+                </p>
+
+                <div class="diag-stats">
+                  <div class="stat-box">
+                    <span class="stat-num" id="statNum1">100%</span>
+                    <span class="stat-desc" id="statDesc1">Capacidade Pulmonar</span>
+                  </div>
+                  <div class="stat-box">
+                    <span class="stat-num" id="statNum2">Whimsical</span>
+                    <span class="stat-desc" id="statDesc2">Frequência Respiratória</span>
+                  </div>
+                </div>
+
+                <div class="diag-tags" id="diagTags">
+                  <span class="mini-tag">#PulmõesPastel</span>
+                  <span class="mini-tag">#FôlegoCriativo</span>
+                  <span class="mini-tag">#AnatomiaOficial</span>
+                </div>
+              </div>
+
+              <div class="diag-interactive-action">
+                <button class="action-btn-trigger" id="diagActionBtn" data-sound="bloop">
+                  <span>⚡ Estimular Fibra Muscular</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Seletores Rápidos de Órgão -->
+            <div class="quick-organ-nav">
+              <button class="nav-organ-btn active" data-organ="lungs">🫁 Pulmões</button>
+              <button class="nav-organ-btn" data-organ="heart">🫀 Coração (Bandeja)</button>
+              <button class="nav-organ-btn" data-organ="brain">🧠 Cabeça & Fita</button>
+              <button class="nav-organ-btn" data-organ="stomach">🍖 Estômago & Alimentos</button>
+              <button class="nav-organ-btn" data-organ="hands">✍️ Mãos & Algemas</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3: CARDÁPIO GASTRONÔMICO & DOPAMINA -->
+    <section class="section-container" id="cardapio-nutricional">
+      <div class="section-header">
+        <span class="section-tag red-tag">COMBUSTÍVEL BIOLÓGICO</span>
+        <h2 class="section-title">Prescrição Gastronômica & Dopamina</h2>
+        <p class="section-subtitle">
+          Alimentos essenciais para abastecer as fibras musculares e o cérebro criativo na paleta branco, marfim e vermelho pastel.
+        </p>
+      </div>
+
+      <div class="food-grid">
+        <!-- Item Especial: Rocambole de Maracujá -->
+        <div class="food-card featured-food" id="foodRocambole">
+          <div class="food-sticker-badge">🌟 SOBREMESA SUPREMA</div>
+          <div class="food-icon-wrap rocambole-glow">
+            <span class="food-emoji">🍰🌀</span>
+          </div>
+          <h3 class="food-name">Rocambole de Maracujá</h3>
+          <span class="food-type">Doce Sagrado / Pico de Dopamina & Acidez Perfeita</span>
+          <p class="food-desc">
+            O equilíbrio supremo entre a massa fofinha e o recheio cremoso e azedinho de maracujá fresco. 
+            É a injeção imediata de dopamina que acende as estrelas nos ventrículos criativos.
+          </p>
+          <div class="food-meter">
+            <span class="meter-label">Índice de Amor:</span>
+            <div class="meter-bar"><div class="meter-fill fill-100"></div></div>
+            <span class="meter-percent">100%</span>
+          </div>
+          <button class="btn-dopamine-burst" id="btnBurstMaracuja" data-sound="sparkle">
+            <span>✨ Injetar Dopamina de Maracujá</span>
+          </button>
+        </div>
+
+        <!-- Item 2: Lasanha -->
+        <div class="food-card" data-sound="pop">
+          <div class="food-icon-wrap">
+            <span class="food-emoji">🍝</span>
+          </div>
+          <h3 class="food-name">Lasanha Artesanal</h3>
+          <span class="food-type">Camadas de Carboidratos & Conforto</span>
+          <p class="food-desc">
+            Camadas generosas de massa artesanal, molho vermelho encorpado e queijo derretido. O prato perfeito para longas sessões de ilustração.
+          </p>
+          <div class="food-meter">
+            <span class="meter-label">Potência Calórica:</span>
+            <div class="meter-bar"><div class="meter-fill fill-90"></div></div>
+            <span class="meter-percent">95%</span>
+          </div>
+          <button class="btn-eat-sample" data-food="lasanha">😋 Degustar</button>
+        </div>
+
+        <!-- Item 3: Feijoada -->
+        <div class="food-card" data-sound="pop">
+          <div class="food-icon-wrap">
+            <span class="food-emoji">🍲</span>
+          </div>
+          <h3 class="food-name">Feijoada Completa</h3>
+          <span class="food-type">Energia Raiz Brasileira</span>
+          <p class="food-desc">
+            Tradição, sabor encorpado e tempero marcante. Sustança pura para passar horas estruturando traços, lore e anatomia expressiva.
+          </p>
+          <div class="food-meter">
+            <span class="meter-label">Nível de Sustança:</span>
+            <div class="meter-bar"><div class="meter-fill fill-95"></div></div>
+            <span class="meter-percent">98%</span>
+          </div>
+          <button class="btn-eat-sample" data-food="feijoada">😋 Degustar</button>
+        </div>
+
+        <!-- Item 4: Carne Assada -->
+        <div class="food-card" data-sound="pop">
+          <div class="food-icon-wrap">
+            <span class="food-emoji">🥩</span>
+          </div>
+          <h3 class="food-name">Carne Assada Suculenta</h3>
+          <span class="food-type">Proteína Fibrilar no Ponto</span>
+          <p class="food-desc">
+            Suculenta, bem dourada e macia. Aquele clássico reconfortante que fornece aminoácidos para alimentar os traços do dia a dia.
+          </p>
+          <div class="food-meter">
+            <span class="meter-label">Suculência:</span>
+            <div class="meter-bar"><div class="meter-fill fill-85"></div></div>
+            <span class="meter-percent">92%</span>
+          </div>
+          <button class="btn-eat-sample" data-food="carne">😋 Degustar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4: ORIGEM GEOGRÁFICA & FREQUÊNCIA DE ONDE VEM -->
+    <section class="section-container" id="origem-geografica">
+      <div class="section-header">
+        <span class="section-tag ivory-tag">RAÍZES & COORDENADAS</span>
+        <h2 class="section-title">Registro de Origem</h2>
+        <p class="section-subtitle">
+          A fusão calorosa e criativa entre Presidente Dutra (Maranhão) e Teresina (Piauí).
+        </p>
+      </div>
+
+      <div class="geo-dashboard">
+        <div class="geo-card city-ma">
+          <div class="geo-pin">📍 MARANHÃO</div>
+          <h3 class="city-name">Presidente Dutra</h3>
+          <p class="city-role">Berço & Conexão Afetiva</p>
+          <div class="geo-badge-list">
+            <span>☀️ Calor & Acolhimento</span>
+            <span>🌿 Interior Maranhense</span>
+            <span>✨ Primeiras Ideias & Gênese da Persona</span>
+          </div>
+        </div>
+
+        <div class="geo-connector">
+          <div class="connector-line">
+            <span class="traveling-spark">⚡</span>
+          </div>
+          <span class="connector-label">PONTE CULTURAL</span>
+        </div>
+
+        <div class="geo-card city-pi">
+          <div class="geo-pin">📍 PIAUÍ</div>
+          <h3 class="city-name">Teresina</h3>
+          <p class="city-role">Expansão & Vivência</p>
+          <div class="geo-badge-list">
+            <span>🔥 Cidade Verde & Quente</span>
+            <span>🎨 Inspiração Visual & Traço</span>
+            <span>🍲 Culinária Marcante</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 5: PRANCHETA INTERATIVA DE ADESIVOS E RABISCOS -->
+    <section class="section-container" id="prancheta-interativa">
+      <div class="section-header">
+        <span class="section-tag red-tag">MESA CIRÚRGICA DE DESENHO</span>
+        <h2 class="section-title">Prancheta Interativa de Rabiscos</h2>
+        <p class="section-subtitle">
+          Rabisque com traços em nanquim, marfim ou vermelho pastel e carimbe adesivos anatômicos cirúrgicos.
+        </p>
+      </div>
+
+      <div class="clipboard-interactive-wrap">
+        <!-- Barra de Ferramentas da Prancheta -->
+        <div class="clipboard-toolbar">
+          <div class="tool-group">
+            <span class="toolbar-label">Tinta:</span>
+            <button class="color-pick-btn active" data-color="#1E1E24" style="background:#1E1E24;" title="Nanquim Preto"></button>
+            <button class="color-pick-btn" data-color="#FB7185" style="background:#FB7185;" title="Vermelho Pastel"></button>
+            <button class="color-pick-btn" data-color="#FDA4AF" style="background:#FDA4AF;" title="Rosa Carne"></button>
+            <button class="color-pick-btn" data-color="#FAF8F5" style="background:#FAF8F5; border-color:#94A3B8;" title="Branco Marfim"></button>
+          </div>
+
+          <div class="tool-group">
+            <span class="toolbar-label">Traço:</span>
+            <button class="size-btn active" data-size="4">Fino</button>
+            <button class="size-btn" data-size="8">Médio</button>
+            <button class="size-btn" data-size="16">Marcador</button>
+          </div>
+
+          <div class="tool-group stickers-tray">
+            <span class="toolbar-label">Carimbar:</span>
+            <button class="stamp-btn" data-stamp="heart" title="Coração Anatômico">🫀</button>
+            <button class="stamp-btn" data-stamp="lungs" title="Pulmões Pastel">🫁</button>
+            <button class="stamp-btn" data-stamp="tape" title="Duct Tape / Curativo">🩹</button>
+            <button class="stamp-btn" data-stamp="maracuja" title="Fatia de Maracujá">🍰</button>
+            <button class="stamp-btn" data-stamp="bone" title="Costelinha / Osso">🦴</button>
+            <button class="stamp-btn" data-stamp="spark" title="Faísca de Dopamina">✨</button>
+          </div>
+
+          <div class="tool-group actions-right">
+            <button class="btn-clear-board" id="btnClearBoard" title="Limpar Prancheta">🧹 Limpar</button>
+          </div>
+        </div>
+
+        <!-- Área do Canvas de Rabisco -->
+        <div class="clipboard-board" id="clipboardBoard">
+          <canvas id="doodleCanvas"></canvas>
+          <div class="canvas-empty-hint" id="canvasHint">
+            <span>✍️ Clique e arraste para desenhar ou selecione um adesivo acima!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 6: SOUNDBOARD WHIMSICAL & SINTETIZADOR -->
+    <section class="section-container" id="soundboard-whimsical">
+      <div class="section-header">
+        <span class="section-tag ivory-tag">SÍNTESE SONORA</span>
+        <h2 class="section-title">Whimsical Soundbox</h2>
+        <p class="section-subtitle">
+          Toque nos botões para disparar efeitos sonoros e notas sintetizadas em tempo real com Web Audio API.
+        </p>
+      </div>
+
+      <div class="sound-pad-grid">
+        <button class="sound-pad-card pad-red" data-tone="dopamine">
+          <span class="pad-icon">✨</span>
+          <span class="pad-name">Dopamina Spark</span>
+          <span class="pad-note">Arpeggio Fofo</span>
+        </button>
+
+        <button class="sound-pad-card pad-ivory" data-tone="bubble">
+          <span class="pad-icon">🫧</span>
+          <span class="pad-name">Bolha Estéril</span>
+          <span class="pad-note">Bloop Agudo</span>
+        </button>
+
+        <button class="sound-pad-card pad-red" data-tone="heartbeat">
+          <span class="pad-icon">🫀</span>
+          <span class="pad-name">Pulso Cardíaco</span>
+          <span class="pad-note">Thump Satisfatório</span>
+        </button>
+
+        <button class="sound-pad-card pad-white" data-tone="maracuja">
+          <span class="pad-icon">🍰</span>
+          <span class="pad-name">Maracujá Splash</span>
+          <span class="pad-note">Acorde Doce-Ácido</span>
+        </button>
+
+        <button class="sound-pad-card pad-ivory" data-tone="scalpel">
+          <span class="pad-icon">🖊️</span>
+          <span class="pad-name">Bisturi / Traço</span>
+          <span class="pad-note">Slide Suave</span>
+        </button>
+
+        <button class="sound-pad-card pad-red" data-tone="whimsicalChime">
+          <span class="pad-icon">🔔</span>
+          <span class="pad-name">Sino Lúdico</span>
+          <span class="pad-note">Melodia Onírica</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé Estilo Alta Médica & Direitos Criativos -->
+  <footer class="clinical-footer">
+    <div class="footer-container">
+      <div class="footer-badge">
+        <div class="badge-icon">🏥</div>
+        <div class="badge-text">
+          <strong>Vitor Gabriel • Dossiê Oficial</strong>
+          <span>Estética Cirúrgica Pastel • Branco, Marfim & Vermelho Pastel</span>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span>Desenvolvido com carinho, HTML5, CSS3 & Web Audio API</span>
+        <button class="btn-back-top" id="btnBackToTop">↑ Topo</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal / Banner de Dopamina com Partículas Dinâmicas -->
+  <div class="dopamine-layer" id="dopamineLayer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

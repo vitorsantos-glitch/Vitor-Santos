@@ -1,0 +1,1812 @@
+/* =========================================================
+   ESTILOS OPERATÓRIO & CARTOONY GORE - VITOR GABRIEL
+   Tema: Mesa Cirúrgica de Hospital / Cartoony Gore Autópsia
+   Paleta Primária: Branco, Branco Marfim (Ivory) e Vermelho Pastel
+   Acentos: Cinza Aço Cirúrgico e Nanquim Preto Marcante
+========================================================= */
+
+:root {
+  /* Paleta Primária: Branco, Marfim e Vermelho Pastel */
+  --white-pure: #FFFFFF;
+  --ivory-base: #FAF8F5;
+  --ivory-card: #FDFBF7;
+  --ivory-dark: #EDE8DC;
+  --ivory-accent: #FFFDF0;
+
+  --red-pastel: #FDA4AF;
+  --red-pastel-main: #FB7185;
+  --red-pastel-light: #FFE4E6;
+  --red-pastel-dark: #E11D48;
+  --red-blood: #BE123C;
+  --red-deep: #881337;
+
+  /* Detalhes de Aço Cirúrgico */
+  --metal-steel: #94A3B8;
+  --metal-light: #CBD5E1;
+  --metal-dark: #64748B;
+  --table-gray: #E2E8F0;
+
+  --ink: #1E1E24;
+  --ink-light: #475569;
+  --ink-subtle: #94A3B8;
+
+  /* Fontes */
+  --font-display: 'Fredoka', 'Outfit', cursive, sans-serif;
+  --font-body: 'Outfit', -apple-system, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Bordas e Sombras de Prontuário */
+  --border-thick: 3.5px solid var(--ink);
+  --border-heavy: 4.5px solid var(--ink);
+  --shadow-slab: 5px 5px 0px var(--ink);
+  --shadow-slab-lg: 8px 8px 0px var(--ink);
+  --shadow-slab-hover: 10px 10px 0px var(--ink);
+  --radius-slab: 20px;
+  --radius-pill: 999px;
+
+  /* Transições Bouncy / Tactile */
+  --spring-squish: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --spring-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body.hospital-theme {
+  font-family: var(--font-body);
+  background-color: var(--ivory-base);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Padrão de Azulejos Estéreis em Marfim e Branco */
+.sterile-tile-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.2) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.2) 1.5px, transparent 1.5px);
+  pointer-events: none;
+}
+
+.ambient-glow {
+  position: fixed;
+  top: -10%;
+  left: 20%;
+  width: 65vw;
+  height: 65vh;
+  background: radial-gradient(circle, rgba(253, 164, 175, 0.22) 0%, rgba(254, 253, 240, 0.4) 50%, transparent 80%);
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+  animation: ambientFloat 14s ease-in-out infinite alternate;
+}
+
+@keyframes ambientFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-30px, 45px) scale(1.06); }
+}
+
+/* =========================================================
+   BARRA SUPERIOR / MONITOR CIRÚRGICO
+========================================================= */
+.clinical-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(253, 251, 247, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: var(--border-heavy);
+  box-shadow: 0 4px 14px rgba(30, 30, 36, 0.06);
+  padding: 0.85rem 1.75rem;
+}
+
+.header-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.patient-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.pulse-dot {
+  width: 16px;
+  height: 16px;
+  background-color: var(--red-pastel-main);
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--red-pastel-main);
+  animation: pulseBeat 1.15s infinite ease-in-out;
+}
+
+@keyframes pulseBeat {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.75; }
+}
+
+.tag-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 1.2px;
+  color: var(--red-pastel-dark);
+  font-weight: 700;
+}
+
+.patient-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge-mini {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  background: var(--red-pastel-light);
+  border: 2px solid var(--ink);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  box-shadow: 1.5px 1.5px 0px var(--ink);
+}
+
+/* Monitor de Eletrocardiograma */
+.ecg-monitor {
+  display: flex;
+  align-items: center;
+  background: var(--white-pure);
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 5px 14px;
+  box-shadow: 3px 3px 0px var(--ink);
+}
+
+.ecg-screen {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.ecg-line {
+  width: 130px;
+  height: 26px;
+  stroke: var(--red-pastel-main);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: ecgSweep 2.2s linear infinite;
+}
+
+@keyframes ecgSweep {
+  to { stroke-dashoffset: 0; }
+}
+
+.bpm-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Ações do Header */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.action-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.5rem 1.15rem;
+  border-radius: var(--radius-pill);
+  border: var(--border-thick);
+  background: var(--white-pure);
+  box-shadow: var(--shadow-slab);
+  cursor: pointer;
+  transition: var(--spring-squish);
+}
+
+.action-pill:hover {
+  transform: translate(-2px, -2px) scale(1.03);
+  box-shadow: var(--shadow-slab-lg);
+}
+
+.action-pill:active {
+  transform: translate(2px, 2px) scale(0.97);
+  box-shadow: 1px 1px 0px var(--ink);
+}
+
+.sound-btn { background: var(--ivory-dark); }
+.dopamine-btn { background: var(--red-pastel); }
+
+/* =========================================================
+   CONTAINER PRINCIPAL
+========================================================= */
+.main-wrapper {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.section-container {
+  background: var(--ivory-card);
+  border: var(--border-heavy);
+  border-radius: var(--radius-slab);
+  padding: 2.75rem 2.25rem;
+  box-shadow: var(--shadow-slab-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Detalhe de fita cirúrgica / duct tape nos cantos */
+.section-container::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: 28px;
+  width: 55px;
+  height: 22px;
+  background: var(--metal-light);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  transform: rotate(3deg);
+  box-shadow: 2px 2px 0px var(--ink);
+  z-index: 10;
+}
+
+.section-header {
+  margin-bottom: 2.25rem;
+  text-align: center;
+  position: relative;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 5px 16px;
+  border-radius: var(--radius-pill);
+  border: var(--border-thick);
+  margin-bottom: 0.85rem;
+  box-shadow: 3px 3px 0px var(--ink);
+}
+
+.ivory-tag { background: var(--ivory-dark); }
+.red-tag { background: var(--red-pastel); }
+.white-tag { background: var(--white-pure); }
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--ink-light);
+  max-width: 680px;
+  margin: 0.6rem auto 0;
+}
+
+/* =========================================================
+   SEÇÃO 1: HERO / DOSSIÊ CLÍNICO
+========================================================= */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.hero-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.status-sticker {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-slab);
+  transform: rotate(-1.5deg);
+  transition: var(--spring-squish);
+  cursor: default;
+}
+
+.status-sticker:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.status-sticker:hover {
+  transform: scale(1.1) rotate(0deg);
+  box-shadow: var(--shadow-slab-lg);
+}
+
+.ivory-stick { background: var(--ivory-dark); }
+.red-stick { background: var(--red-pastel); }
+.white-stick { background: var(--white-pure); }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  font-weight: 900;
+  line-height: 1.08;
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.5px;
+}
+
+.highlight-red {
+  color: var(--ink);
+  background: linear-gradient(120deg, var(--red-pastel-light) 0%, var(--red-pastel) 100%);
+  padding: 0 12px;
+  border-radius: 10px;
+  display: inline-block;
+  border: 3px solid var(--ink);
+  box-shadow: 4px 4px 0px var(--ink);
+}
+
+.hero-description {
+  font-size: 1.22rem;
+  color: var(--ink-light);
+  line-height: 1.65;
+  margin-bottom: 2.25rem;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+}
+
+.btn-bubble {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 0.95rem 1.75rem;
+  border-radius: var(--radius-pill);
+  border: var(--border-heavy);
+  box-shadow: var(--shadow-slab-lg);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  transition: var(--spring-squish);
+}
+
+.btn-bubble:hover {
+  transform: translate(-3px, -3px) scale(1.03);
+  box-shadow: var(--shadow-slab-hover);
+}
+
+.btn-bubble:active {
+  transform: translate(2px, 2px) scale(0.97);
+  box-shadow: 2px 2px 0px var(--ink);
+}
+
+.btn-red { background: var(--red-pastel); }
+.btn-ivory { background: var(--ivory-dark); }
+.btn-white { background: var(--white-pure); }
+.btn-sensor {
+  background: #0f172a;
+  color: #fb7185 !important;
+  border-color: #fb7185;
+  box-shadow: 4px 4px 0px #fb7185;
+}
+.btn-sensor:hover {
+  background: #1e293b;
+  box-shadow: 6px 6px 0px #fb7185;
+}
+
+.sensor-header-btn {
+  background: #0f172a !important;
+  color: #fb7185 !important;
+  border-color: #fb7185 !important;
+  text-decoration: none;
+}
+.sensor-header-btn:hover {
+  background: #1e293b !important;
+}
+
+/* Crachá Oficial do Cirurgião-Chefe (Lead Doctor) */
+.lead-doctor-badge-card {
+  position: relative;
+  background: var(--ivory-card);
+  border: var(--border-heavy);
+  border-radius: var(--radius-slab);
+  padding: 2.25rem 2rem 1.75rem;
+  box-shadow: var(--shadow-slab-lg);
+  transform: rotate(1.5deg);
+  transition: var(--spring-squish);
+  max-width: 420px;
+  width: 100%;
+}
+
+.lead-doctor-badge-card:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: var(--shadow-slab-hover);
+}
+
+.lanyard-clip {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 26px;
+  background: var(--ink);
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lanyard-clip::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 8px;
+  background: var(--red-pastel-main);
+  border-radius: 4px;
+}
+
+.doctor-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.doctor-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2.5px dashed var(--ink);
+  padding-bottom: 0.75rem;
+}
+
+.hospital-seal {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Container e Foto Quadrada do Cirurgião-Chefe */
+.doctor-photo-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.doctor-photo-frame {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 1 / 1;
+  border: 3.5px solid var(--ink);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0px var(--ink);
+  background: #000000;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.doctor-photo-frame:hover {
+  transform: scale(1.04) rotate(-0.5deg);
+  box-shadow: 6px 6px 0px var(--ink);
+}
+
+.doctor-photo-frame:active {
+  transform: scale(0.96);
+  box-shadow: 2px 2px 0px var(--ink);
+}
+
+.doctor-photo-square {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+  opacity: 0;
+  transform: scale(1.08);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.doctor-photo-square.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.doctor-photo-square.thumbsup {
+  object-position: center 30%;
+}
+
+.doctor-photo-square.stare {
+  object-position: center 22%;
+}
+
+.doctor-photo-frame.staring-mode {
+  animation: photoStareShake 0.4s ease-in-out, stareGlow 1.5s infinite alternate;
+  border-color: var(--red-blood) !important;
+}
+
+@keyframes photoStareShake {
+  0%, 100% { transform: translateX(0) scale(1.05); }
+  20%, 60% { transform: translateX(-4px) scale(1.06); }
+  40%, 80% { transform: translateX(4px) scale(1.06); }
+}
+
+@keyframes stareGlow {
+  0% { box-shadow: 0 0 10px rgba(125, 12, 37, 0.4), 4px 4px 0px var(--ink); }
+  100% { box-shadow: 0 0 24px rgba(251, 113, 133, 0.8), 4px 4px 0px var(--ink); }
+}
+
+/* Cantoneiras Estilizadas no Enquadramento da Foto */
+.photo-corner-accent {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--red-pastel-main);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.photo-corner-accent.top-l { top: 6px; left: 6px; border-width: 3px 0 0 3px; }
+.photo-corner-accent.top-r { top: 6px; right: 6px; border-width: 3px 3px 0 0; }
+.photo-corner-accent.btm-l { bottom: 6px; left: 6px; border-width: 0 0 3px 3px; }
+.photo-corner-accent.btm-r { bottom: 6px; right: 6px; border-width: 0 3px 3px 0; }
+
+.doctor-role-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: var(--ink);
+  color: var(--white-pure);
+  padding: 3px 12px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 1px;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.doctor-role-tag.approved {
+  background: var(--red-blood);
+  transform: scale(1.06);
+}
+
+.doctor-role-tag.stare-alert {
+  background: #0D0E12;
+  color: var(--red-pastel-main);
+  border: 1.5px solid var(--red-blood);
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(251, 113, 133, 0.5);
+  animation: pulseAlert 0.8s infinite alternate;
+}
+
+@keyframes pulseAlert {
+  0% { transform: scale(1.05); }
+  100% { transform: scale(1.1); }
+}
+
+/* Informações e Metadados do Doutor */
+.doctor-info-block {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.doctor-name {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin: 0;
+}
+
+.doctor-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink-light);
+}
+
+.doctor-data-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-top: 0.65rem;
+  text-align: left;
+  background: var(--white-pure);
+  padding: 0.95rem;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0px var(--ink);
+}
+
+.data-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.data-lbl {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--ink-light);
+  font-weight: 700;
+}
+
+.data-val {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.red-text {
+  color: var(--red-blood) !important;
+}
+
+.doctor-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 2.5px dashed var(--ink);
+  padding-top: 0.75rem;
+}
+
+.barcode-graphic {
+  width: 105px;
+  height: 24px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ink),
+    var(--ink) 2.5px,
+    transparent 2.5px,
+    transparent 5px,
+    var(--ink) 5px,
+    var(--ink) 8.5px,
+    transparent 8.5px,
+    transparent 11px
+  );
+}
+
+.seal-text {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  background: var(--red-pastel);
+  border: 2px solid var(--ink);
+  padding: 4px 9px;
+  border-radius: 5px;
+  transform: rotate(-3deg);
+  box-shadow: 2px 2px 0px var(--ink);
+}
+
+/* =========================================================
+   SEÇÃO 2: MESA OPERATÓRIA / RAIO-X & AUTÓPSIA CARTOON
+========================================================= */
+.xray-dashboard {
+  display: grid;
+  grid-template-columns: 1.18fr 1fr;
+  gap: 2.25rem;
+  align-items: stretch;
+}
+
+.lightbox-view {
+  background: #2B2D3A;
+  border: var(--border-heavy);
+  border-radius: var(--radius-slab);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-slab-lg);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-frame {
+  width: 100%;
+  position: relative;
+  background: radial-gradient(circle, #3D4152 0%, #22242F 100%);
+  border: 2.5px solid #5A607A;
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  box-shadow: inset 0 0 35px rgba(253, 164, 175, 0.15);
+}
+
+.lightbox-screws {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #CBD5E1;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+}
+
+.top-left { top: 12px; left: 12px; }
+.top-right { top: 12px; right: 12px; }
+.bottom-left { bottom: 12px; left: 12px; }
+.bottom-right { bottom: 12px; right: 12px; }
+
+.xray-canvas-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 580px;
+}
+
+.xray-grid-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 26px 26px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px);
+  pointer-events: none;
+}
+
+/* Container e Imagem Oficial da Autópsia com Animação Vital */
+.official-body-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 3.5px var(--ink);
+  transition: var(--spring-squish);
+  animation: bodyVitalPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes bodyVitalPulse {
+  0% {
+    transform: scale(1) translateY(0);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 3.5px var(--ink);
+  }
+  50% {
+    transform: scale(1.012) translateY(-3px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 18px rgba(251, 113, 133, 0.35), 0 0 0 3.5px var(--ink);
+  }
+  100% {
+    transform: scale(1.018) translateY(-4px);
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.65), 0 0 24px rgba(251, 113, 133, 0.5), 0 0 0 4px var(--red-pastel-main);
+  }
+}
+
+.official-body-wrap:hover {
+  animation-play-state: paused;
+  transform: scale(1.02) translateY(-4px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.7), 0 0 0 4px var(--red-pastel-main);
+}
+
+.official-body-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  animation: subtleChestRise 4s ease-in-out infinite alternate;
+}
+
+@keyframes subtleChestRise {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 0px transparent);
+  }
+  50% {
+    filter: brightness(1.03) drop-shadow(0 0 4px rgba(253, 164, 175, 0.3));
+  }
+  100% {
+    filter: brightness(1.05) drop-shadow(0 0 8px rgba(253, 164, 175, 0.5));
+  }
+}
+
+/* Barra de Censura Preta Cobrindo Todo o Rosto Superior */
+.black-censor-bar {
+  position: absolute;
+  top: 5.6%;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 36.5%;
+  height: 11.2%;
+  background: #08090C;
+  border: 3px solid #1C1E26;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 18;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--spring-squish);
+}
+
+.black-censor-bar span {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: 4px;
+  user-select: none;
+}
+
+.black-censor-bar:hover {
+  transform: translateX(-50%) rotate(0deg) scale(1.05);
+  box-shadow: 0 8px 26px rgba(251, 113, 133, 0.7), 0 0 0 2px var(--red-pastel-main);
+  background: #14161E;
+}
+
+/* Hotspots Invisíveis Mapeados Sobre os Órgãos da Imagem */
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: var(--spring-squish);
+  z-index: 10;
+}
+
+.hotspot:hover,
+.hotspot.active {
+  background: rgba(251, 113, 133, 0.35);
+  box-shadow: 0 0 16px rgba(251, 113, 133, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.8);
+  border: 2px dashed var(--white-pure);
+}
+
+.hotspot-heart {
+  top: 0%;
+  right: 0%;
+  width: 25%;
+  height: 18%;
+  border-radius: 12px;
+}
+
+.hotspot-brain {
+  top: 5%;
+  left: 38%;
+  width: 26%;
+  height: 18%;
+}
+
+.hotspot-lungs {
+  top: 23%;
+  left: 35%;
+  width: 32%;
+  height: 20%;
+}
+
+.hotspot-stomach {
+  top: 38%;
+  left: 36%;
+  width: 30%;
+  height: 18%;
+}
+
+.hotspot-hands-l {
+  top: 36%;
+  left: 17%;
+  width: 18%;
+  height: 18%;
+}
+
+.hotspot-hands-r {
+  top: 36%;
+  right: 17%;
+  width: 18%;
+  height: 18%;
+}
+
+.hotspot-tools {
+  bottom: 0%;
+  left: 0%;
+  width: 30%;
+  height: 24%;
+  border-radius: 12px;
+}
+
+/* Pins Flutuantes Posicionados na Imagem Oficial */
+.organ-pin {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  background: var(--white-pure);
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  box-shadow: 3px 3px 0px var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: var(--spring-squish);
+  animation: floatPin 3.2s ease-in-out infinite alternate;
+  z-index: 25;
+}
+
+.pin-heart-official { top: 6%; right: 12%; animation-delay: 0.2s; }
+.pin-brain-official { top: 12%; left: 47%; animation-delay: 0.5s; }
+.pin-lungs-official { top: 32%; left: 47%; animation-delay: 0.8s; }
+.pin-stomach-official { top: 48%; left: 47%; animation-delay: 1.1s; }
+.pin-cuffs-official { top: 42%; left: 16%; animation-delay: 1.4s; }
+
+@keyframes floatPin {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.organ-pin:hover {
+  transform: scale(1.3) translateY(-5px);
+  background: var(--red-pastel-light);
+  box-shadow: 4px 4px 0px var(--ink);
+}
+
+/* Painel Lateral de Diagnóstico */
+.diagnosis-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-terminal {
+  background: var(--ivory-dark);
+  border: var(--border-heavy);
+  border-radius: var(--radius-slab);
+  box-shadow: var(--shadow-slab-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  height: 100%;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white-pure);
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 7px 14px;
+}
+
+.dot-win {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+}
+
+.dot-win.red { background: var(--red-pastel-main); }
+.dot-win.yellow { background: var(--metal-light); }
+.dot-win.cyan { background: var(--ivory-base); }
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-left: auto;
+  color: var(--ink);
+}
+
+.terminal-content {
+  background: var(--white-pure);
+  border: 2.5px solid var(--ink);
+  border-radius: 16px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  flex-grow: 1;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.diag-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: var(--red-pastel-light);
+  border: 2px solid var(--ink);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.diag-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin-top: 6px;
+}
+
+.diag-text {
+  font-size: 1.08rem;
+  color: var(--ink-light);
+  line-height: 1.65;
+}
+
+.diag-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.stat-box {
+  background: var(--ivory-base);
+  border: 2.5px solid var(--ink);
+  border-radius: 12px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2.5px 2.5px 0px var(--ink);
+}
+
+.stat-num {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--red-blood);
+}
+
+.stat-desc {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink-light);
+}
+
+.diag-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.5rem;
+}
+
+.mini-tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  background: var(--ivory-dark);
+  border: 2px solid var(--ink);
+  padding: 4px 10px;
+  border-radius: 7px;
+  font-weight: 700;
+}
+
+.action-btn-trigger {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  background: var(--red-pastel);
+  border: var(--border-thick);
+  border-radius: var(--radius-pill);
+  padding: 0.75rem 1.4rem;
+  box-shadow: var(--shadow-slab);
+  cursor: pointer;
+  transition: var(--spring-squish);
+  width: 100%;
+}
+
+.action-btn-trigger:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-slab-lg);
+  background: var(--red-pastel-main);
+  color: var(--white-pure);
+}
+
+.action-btn-trigger:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--ink);
+}
+
+.quick-organ-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.nav-organ-btn {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  background: var(--white-pure);
+  border: 2.5px solid var(--ink);
+  border-radius: 10px;
+  padding: 0.6rem;
+  cursor: pointer;
+  box-shadow: 2.5px 2.5px 0px var(--ink);
+  transition: var(--spring-squish);
+}
+
+.nav-organ-btn:hover,
+.nav-organ-btn.active {
+  background: var(--red-pastel-light);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--ink);
+}
+
+/* =========================================================
+   SEÇÃO 3: CARDÁPIO GASTRONÔMICO & DOPAMINA
+========================================================= */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.food-card {
+  background: var(--white-pure);
+  border: var(--border-heavy);
+  border-radius: var(--radius-slab);
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow-slab-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+  transition: var(--spring-squish);
+}
+
+.food-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-slab-hover);
+}
+
+.featured-food {
+  background: linear-gradient(135deg, var(--ivory-accent) 0%, #FFFFFF 100%);
+  grid-column: span 2;
+}
+
+@media (max-width: 840px) {
+  .featured-food {
+    grid-column: span 1;
+  }
+}
+
+.food-sticker-badge {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  background: var(--red-pastel);
+  border: 2.5px solid var(--ink);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  box-shadow: 3px 3px 0px var(--ink);
+  transform: rotate(2.5deg);
+}
+
+.food-icon-wrap {
+  width: 72px;
+  height: 72px;
+  background: var(--ivory-base);
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3.5px 3.5px 0px var(--ink);
+  position: relative;
+}
+
+.rocambole-glow {
+  background: var(--red-pastel-light);
+  box-shadow: 0 0 20px rgba(253, 164, 175, 0.4), 3.5px 3.5px 0px var(--ink);
+}
+
+.food-emoji {
+  font-size: 2.2rem;
+}
+
+.food-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.food-type {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--red-pastel-dark);
+  margin-top: -0.4rem;
+}
+
+.food-desc {
+  font-size: 1rem;
+  color: var(--ink-light);
+  line-height: 1.55;
+  flex-grow: 1;
+}
+
+.food-meter {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.meter-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.meter-bar {
+  flex-grow: 1;
+  height: 14px;
+  background: var(--ivory-dark);
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  transition: width 0.8s ease-out;
+}
+
+.fill-100 { width: 100%; background: linear-gradient(90deg, var(--red-pastel), var(--red-pastel-dark)); }
+.fill-95 { width: 95%; background: var(--red-pastel-main); }
+.fill-90 { width: 90%; background: var(--red-pastel); }
+.fill-85 { width: 85%; background: var(--metal-steel); }
+
+.meter-percent {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.btn-dopamine-burst {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  background: var(--red-pastel);
+  border: var(--border-heavy);
+  border-radius: var(--radius-pill);
+  padding: 0.9rem 1.4rem;
+  box-shadow: var(--shadow-slab);
+  cursor: pointer;
+  transition: var(--spring-squish);
+  margin-top: 0.5rem;
+}
+
+.btn-dopamine-burst:hover {
+  background: var(--red-pastel-main);
+  color: var(--white-pure);
+  transform: translate(-3px, -3px) scale(1.03);
+  box-shadow: var(--shadow-slab-lg);
+}
+
+.btn-eat-sample {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: var(--white-pure);
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 0.55rem 1.15rem;
+  cursor: pointer;
+  box-shadow: 2.5px 2.5px 0px var(--ink);
+  transition: var(--spring-squish);
+  margin-top: 0.5rem;
+  align-self: flex-start;
+}
+
+.btn-eat-sample:hover {
+  background: var(--red-pastel-light);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--ink);
+}
+
+/* =========================================================
+   SEÇÃO 4: ORIGEM GEOGRÁFICA
+========================================================= */
+.geo-dashboard {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.geo-card {
+  background: var(--white-pure);
+  border: var(--border-heavy);
+  border-radius: var(--radius-slab);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--shadow-slab-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: var(--spring-squish);
+}
+
+.geo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-slab-hover);
+}
+
+.city-ma {
+  background: linear-gradient(145deg, var(--ivory-dark) 0%, #FFFFFF 100%);
+}
+
+.city-pi {
+  background: linear-gradient(145deg, var(--red-pastel-light) 0%, #FFFFFF 100%);
+}
+
+.geo-pin {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  align-self: flex-start;
+  padding: 4px 12px;
+  background: var(--white-pure);
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  box-shadow: 2.5px 2.5px 0px var(--ink);
+}
+
+.city-name {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.city-role {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  font-weight: 700;
+}
+
+.geo-badge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.geo-badge-list span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--ink);
+  padding: 5px 12px;
+  border-radius: 9px;
+  box-shadow: 1.5px 1.5px 0px var(--ink);
+}
+
+.geo-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.connector-line {
+  width: 90px;
+  height: 8px;
+  background: var(--ink);
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.traveling-spark {
+  position: absolute;
+  font-size: 1.4rem;
+  animation: sparkTravel 2s infinite ease-in-out alternate;
+}
+
+@keyframes sparkTravel {
+  0% { left: 0%; }
+  100% { left: 75%; }
+}
+
+.connector-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: var(--red-pastel);
+  border: 2px solid var(--ink);
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  box-shadow: 2px 2px 0px var(--ink);
+}
+
+/* =========================================================
+   SEÇÃO 5: PRANCHETA INTERATIVA DE ADESIVOS E RABISCOS
+========================================================= */
+.clipboard-interactive-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.clipboard-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.15rem;
+  background: var(--ivory-base);
+  border: var(--border-heavy);
+  border-radius: 18px;
+  padding: 1rem 1.4rem;
+}
+
+.tool-group {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.toolbar-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.color-pick-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  cursor: pointer;
+  transition: var(--spring-squish);
+}
+
+.color-pick-btn.active {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 3.5px var(--red-pastel-main), 2px 2px 0px var(--ink);
+}
+
+.size-btn, .stamp-btn, .btn-clear-board {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: var(--white-pure);
+  border: 2.5px solid var(--ink);
+  border-radius: 9px;
+  padding: 5px 12px;
+  cursor: pointer;
+  box-shadow: 2.5px 2.5px 0px var(--ink);
+  transition: var(--spring-squish);
+}
+
+.stamp-btn {
+  font-size: 1.35rem;
+  padding: 3px 9px;
+}
+
+.size-btn.active, .stamp-btn.active {
+  background: var(--red-pastel-light);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--ink);
+}
+
+.btn-clear-board {
+  background: var(--red-pastel);
+}
+
+.btn-clear-board:hover {
+  background: var(--red-pastel-main);
+  color: var(--white-pure);
+}
+
+.clipboard-board {
+  position: relative;
+  background: var(--white-pure);
+  border: var(--border-heavy);
+  border-radius: var(--radius-slab);
+  min-height: 440px;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.06);
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+#doodleCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.canvas-empty-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink-subtle);
+  pointer-events: none;
+  background: rgba(255,255,255,0.94);
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  border: 2px dashed var(--ink-subtle);
+  transition: opacity 0.3s;
+}
+
+/* =========================================================
+   SEÇÃO 6: SOUNDBOARD WHIMSICAL
+========================================================= */
+.sound-pad-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  gap: 1.35rem;
+}
+
+.sound-pad-card {
+  border: var(--border-heavy);
+  border-radius: 18px;
+  padding: 1.6rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: var(--shadow-slab);
+  cursor: pointer;
+  transition: var(--spring-squish);
+}
+
+.sound-pad-card:hover {
+  transform: translate(-3px, -3px) scale(1.04);
+  box-shadow: var(--shadow-slab-lg);
+}
+
+.sound-pad-card:active {
+  transform: translate(2px, 2px) scale(0.96);
+  box-shadow: 1px 1px 0px var(--ink);
+}
+
+.pad-red { background: var(--red-pastel); }
+.pad-ivory { background: var(--ivory-dark); }
+.pad-white { background: var(--white-pure); }
+
+.pad-icon {
+  font-size: 2.4rem;
+}
+
+.pad-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.pad-note {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-light);
+  font-weight: 700;
+}
+
+/* =========================================================
+   RODAPÉ CLÍNICO
+========================================================= */
+.clinical-footer {
+  border-top: var(--border-heavy);
+  background: var(--ivory-card);
+  padding: 2.75rem 1.5rem;
+  box-shadow: 0 -6px 16px rgba(0,0,0,0.04);
+}
+
+.footer-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.footer-badge {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.badge-icon {
+  font-size: 2.2rem;
+}
+
+.badge-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-text strong {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.badge-text span {
+  font-size: 0.9rem;
+  color: var(--ink-light);
+}
+
+.footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--ink-light);
+}
+
+.btn-back-top {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 800;
+  background: var(--red-pastel);
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 5px 14px;
+  cursor: pointer;
+  box-shadow: 2.5px 2.5px 0px var(--ink);
+  transition: var(--spring-squish);
+}
+
+.btn-back-top:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--ink);
+}
+
+/* =========================================================
+   CAMADA DE PARTÍCULAS / DOPAMINA BURST
+========================================================= */
+.dopamine-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.dopamine-particle {
+  position: absolute;
+  pointer-events: none;
+  font-size: 2rem;
+  animation: floatBurst 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes floatBurst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.5) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(var(--dx), var(--dy)) scale(1.4) rotate(var(--rot));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), calc(var(--dy) + 70px)) scale(0.8) rotate(calc(var(--rot) * 2));
+  }
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+@media (max-width: 950px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .xray-dashboard {
+    grid-template-columns: 1fr;
+  }
+  .geo-dashboard {
+    grid-template-columns: 1fr;
+  }
+  .geo-connector {
+    transform: rotate(90deg);
+    margin: 1.25rem 0;
+  }
+  .hero-title {
+    font-size: 2.6rem;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .clinical-header {
+    padding: 0.85rem 1.15rem;
+  }
+  .ecg-monitor {
+    display: none;
+  }
+  .main-wrapper {
+    padding: 2rem 1rem 5rem;
+    gap: 3.5rem;
+  }
+  .section-container {
+    padding: 1.75rem 1.15rem;
+  }
+}
